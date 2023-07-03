@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import css from './Modal.module.css';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export default function Modal({children, onClose}) {
+function Modal({children, onClose}) {
 
    useEffect(() => {
     const hanpleKeydown = e => {
@@ -30,4 +31,11 @@ export default function Modal({children, onClose}) {
             </div>,
             modalRoot,
         )
-}
+};
+
+Modal.propTypes = {
+  children: PropTypes.array,
+  onClose: PropTypes.func.isRequired,
+};
+
+export default Modal;

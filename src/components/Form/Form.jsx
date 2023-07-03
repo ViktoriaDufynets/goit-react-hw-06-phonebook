@@ -1,11 +1,18 @@
 import PropTypes from 'prop-types';
 import css from './Form.module.css';
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addContact, getContacts } from 'redux/reducer';
+import { nanoid } from 'nanoid';
 
 
-export default function Form({onSubmit}) {
+
+function Form({onSubmit}) {
    const [name, setName] = useState('');
    const [number, setNumber] = useState('');
+
+   const contacts = useSelector(getContacts);
+   const dispatch = useDispatch();
 
   const handleName = e => {
     setName(e.target.value);
@@ -15,9 +22,15 @@ export default function Form({onSubmit}) {
     setNumber(e.target.value);
   };
 
+
+
   const handleSubmit = e => {
     e.preventDefault();
-    onSubmit({ name, number });
+    const newElement = { id: nanoid(), name, number };
+    contacts.some(contact => contact.name === name)
+    ? alert(`${name} is already in contacts`)
+    : dispatch(addContact(newElement));
+    onSubmit(newElement);
     reset();
   };
 
@@ -26,6 +39,8 @@ export default function Form({onSubmit}) {
     setName('');
     setNumber('');
   };
+
+
 
    return (
     <form className={css.form} onSubmit={handleSubmit}>
@@ -60,15 +75,13 @@ export default function Form({onSubmit}) {
    )
 }
 
-
-
-
-
 Form.propTypes = { 
-   handleChange: PropTypes.func, 
+   handleName: PropTypes.func, 
    handleSubmit: PropTypes.func,
    reset: PropTypes.func, 
  };
+
+ export default Form;
 
 
 
