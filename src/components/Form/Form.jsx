@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import css from './Form.module.css';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact, getContacts } from 'redux/reducer';
+import { addContact, getContacts } from 'redux/slice';
 import { nanoid } from 'nanoid';
 
 
@@ -76,9 +76,8 @@ function Form({onSubmit}) {
 }
 
 Form.propTypes = { 
-   handleName: PropTypes.func, 
-   handleSubmit: PropTypes.func,
-   reset: PropTypes.func, 
+  onSubmit: PropTypes.func.isRequired, 
+
  };
 
  export default Form;

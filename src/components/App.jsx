@@ -3,7 +3,7 @@ import Filter from './FilterByName/Filter';
 import Message from './Message/Message';
 import Header from './Header/Header';
 import { useSelector } from 'react-redux';
-import { getContacts } from 'redux/reducer';
+import { getContacts } from 'redux/slice';
 import css from './App.module.css';
 
 function App() {

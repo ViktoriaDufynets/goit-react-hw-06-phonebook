@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Modal from 'components/Modal/Modal';
 import Form from 'components/Form/Form';
@@ -16,7 +15,7 @@ function Header() {
       {showModal && (
         <Modal onClose={toggleModal}>
         <div className={css.header}>
-    <h2 className={css.add}>Add contact</h2>
+    <h3 className={css.add}>Add contact</h3>
     <button  className={css.closeButton} type="button" onClick={toggleModal}>Close</button>
     </div>
           <Form onSubmit={toggleModal} />
@@ -25,10 +24,5 @@ function Header() {
     </>
   );
 }
-
-Header.propTypes = {
-  toggleModal: PropTypes.func,
-};
-
 
 export default Header;
